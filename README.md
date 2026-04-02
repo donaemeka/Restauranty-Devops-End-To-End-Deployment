@@ -1,323 +1,256 @@
-# Restauranty - End-to-End DevOps Deployment
+# 🚀 Restauranty - End-to-End DevOps Deployment
 
-## 📋 Project Overview
+A full-stack **restaurant management platform** built using a **microservices architecture**, where users can browse items, manage authentication, and apply discounts — all running on a fully containerized and orchestrated environment.
 
-**Restauranty** is a full-stack restaurant management system built with microservices architecture and deployed using production-grade DevOps practices. This project demonstrates end-to-end infrastructure skills from local development to production monitoring.
+The system demonstrates how modern applications are deployed, secured, monitored, and automated using real-world DevOps practices.
 
-**What problem does it solve?** Modern restaurants need multiple digital services (menu, orders, discounts, authentication) that must work together reliably. This project shows how to build, deploy, and maintain such systems using modern DevOps tools.
+---
 
+## 📌 Project Overview
+
+**Restauranty** is designed to simulate a real-world production system where multiple backend services work together reliably.
+
+It demonstrates:
+
+* Microservices architecture using **Node.js and React**
+* Containerization with **Docker**
+* Deployment with **Kubernetes**
+* Monitoring using **Prometheus & Grafana**
+* Secure communication via **Network Policies & Secrets**
+* Automated delivery using **GitHub Actions CI/CD**
+
+---
+
+## 🎯 Problem It Solves
+
+Modern applications (like restaurant systems) require:
+
+* Multiple independent services (auth, items, discounts)
+* Reliable communication between services
+* Scalable infrastructure
+* Monitoring and observability
+
+This project shows how to design and operate such systems using DevOps best practices.
+
+---
 
 ## 🏗️ Architecture Overview
 
-**Core Components:**
+### 🔄 System Flow
 
-   - **Frontend:** React.js application
+```text
+User → Frontend (React) → NGINX Ingress → Kubernetes Cluster → Backend Services → MongoDB
+```
 
-   - **Backend Services:** Auth, Items, Discounts (Node.js)
+### 🧱 Core Components
 
-   - **Database:** MongoDB
+* **Frontend:** React.js application
+* **Backend:** Auth, Items, Discounts (Node.js microservices)
+* **Database:** MongoDB
+* **Orchestration:** Kubernetes
+* **Monitoring:** Prometheus + Grafana
+* **Security:** Network Policies & Secrets
 
-   - **Orchestration:** Kubernetes with ingress routing
-
-   - **Monitoring:** Prometheus + Grafana
-
-   - **Security:** Network Policies & secret management
-
+---
 
 ## 🔧 Technology Stack
 
-| Layer | Technology | Implementation |
-|-------|------------|----------------|
-| **Application** | React.js + Node.js | Frontend UI & Backend Microservices |
-| **Containerization** | Docker + Multi-stage builds | Package and isolate services |
-| **Orchestration** | Kubernetes (Minikube) | Container deployment & management |
-| **Networking** | NGINX Ingress + Services | Routing & service discovery |
-| **Database** | MongoDB | Data persistence |
-| **Monitoring** | Prometheus + Grafana | Metrics collection & visualization |
-| **CI/CD** | GitHub Actions | Automated testing & deployment |
-| **Security** | Network Policies + Secrets | Secure service communication |
-| **Infrastructure** | YAML Manifests | Infrastructure as Code |
+| Layer                | Technology                 | Implementation                      |
+| -------------------- | -------------------------- | ----------------------------------- |
+| **Application**      | React.js + Node.js         | Frontend UI & Backend Microservices |
+| **Containerization** | Docker                     | Service isolation                   |
+| **Orchestration**    | Kubernetes (Minikube)      | Deployment & scaling                |
+| **Networking**       | NGINX Ingress              | Routing & service discovery         |
+| **Database**         | MongoDB                    | Data persistence                    |
+| **Monitoring**       | Prometheus + Grafana       | Metrics & dashboards                |
+| **CI/CD**            | GitHub Actions             | Automated pipelines                 |
+| **Security**         | Network Policies + Secrets | Secure communication                |
+| **Infrastructure**   | YAML Manifests             | Infrastructure as Code              |
 
+---
 
+## 📊 Key Achievements
 
-## 📸 Project Screenshots
+* ✅ Deployed a **multi-service application on Kubernetes**
+* ✅ Implemented **CI/CD pipeline for automated delivery**
+* ✅ Integrated **monitoring stack (Prometheus + Grafana)**
+* ✅ Applied **network policies for secure service communication**
+* ✅ Built a fully containerized production-like environment
 
+---
 
+## 📸 Screenshots
 
-| Application Running | Kubernetes Dashboard | Monitoring | CI/CD Pipeline |
-|---------------------|----------------------|------------|----------------|
+| Application                 | Kubernetes                            | Monitoring                                       | CI/CD                                   |
+| --------------------------- | ------------------------------------- | ------------------------------------------------ | --------------------------------------- |
 | ![App](screenshots/App.png) | ![K8s](screenshots/k8s-dashboard.png) | ![Monitoring](screenshots/grafana-dashboard.png) | ![CI/CD](screenshots/cicd-pipeline.png) |
 
-
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-   - Docker & Docker Compose
-   - Kubernetes (Minikube recommended)
-   - kubectl
 
-### Step 1: Clone and Explore
-   - git clone https://github.com/donaemeka/restauranty-devops-deployment
-   - cd restauranty-devops-deployment
+* Docker
+* Kubernetes (Minikube)
+* kubectl
 
-### Step 2: Local Development (Optional)
-   - cd infrastructure
-   - docker-compose up -d
-   -  Access: http://localhost
- 
+---
 
-### Step 3: Kubernetes Deployment
-**Deploy everything with**
-   - kubectl apply -f k8s/
+### Clone Repository
 
-**Create network access**
-   - minikube tunnel
-
-   **Access application**
-   - open http://localhost
-
-### Step 4: Verify Deployment
-   - kubectl get all
-   - kubectl get ingress
-
-
-
-
-### 🛠️ Detailed DevOps Implementation
-
-**Phase 1: Containerization**
-
-Each service is containerized with optimized Dockerfiles:
-
-- **Example from backend/auth/Dockerfile**
-
-```text
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm ci --only=production
-
-COPY . .
-
-EXPOSE 3001
-
-CMD ["npm", "start"]
+```bash
+git clone https://github.com/donaemeka/restauranty-devops-deployment
+cd restauranty-devops-deployment
 ```
 
+---
 
+### Local Development
 
-### Phase 2: Kubernetes Orchestration
-Deployment manifests for each service with:
-
-   - Resource limits and requests
-
-   - Readiness and liveness probes
-
-   - Service discovery
-
-   - ConfigMap and Secret management
-
-
-
-
-### Phase 3: Networking & Routing
-**Ingress controller configuration:**
-
-```text
-apiVersion: networking.k8s.io/v1
-
-kind: Ingress
-
-metadata:
-
-  name: restauranty-ingress
-
-spec:
-
-  rules:
-
-  - http:
-
-      paths:
-
-      - path: /api/auth
-
-        pathType: Prefix
-
-        backend:
-
-          service:
-
-            name: auth-service
-
-            port:
-
-              number: 3001
+```bash
+cd infrastructure
+docker-compose up -d
 ```
 
+Access: http://localhost
 
-### Phase 4: Monitoring & Observability
-   - Prometheus for metrics collection
+---
 
-   - Grafana dashboards for visualization
+### Kubernetes Deployment
 
-   - Service health monitoring
+```bash
+kubectl apply -f k8s/
+minikube tunnel
+```
 
-   - Custom business metrics
+Access: http://localhost
 
+---
 
+### Verify
 
+```bash
+kubectl get all
+kubectl get ingress
+```
 
-### Phase 5: Security
-   - Network Policies for service isolation
+---
 
-   - Secret management without hardcoded credentials
+## 🛠️ DevOps Implementation
 
-   - Non-root container execution
+### 1️⃣ Containerization
 
-   - Security contexts
+* Multi-stage Docker builds
+* Optimized images for production
 
+---
 
+### 2️⃣ Kubernetes Orchestration
 
+* Deployments with resource limits
+* Liveness & readiness probes
+* ConfigMaps & Secrets
 
-### Phase 6: CI/CD Automation
-GitHub Actions pipeline:
+---
 
-   - Automated testing and validation
+### 3️⃣ Networking
 
-   - Docker image building
+* NGINX Ingress
+* Service-based communication
 
-   - Deployment readiness checks           
+---
 
+### 4️⃣ Monitoring
+
+* Prometheus for metrics
+* Grafana dashboards
+
+---
+
+### 5️⃣ Security
+
+* Network Policies
+* Secrets management
+* Non-root containers
+
+---
+
+### 6️⃣ CI/CD
+
+* GitHub Actions pipeline
+* Automated builds & validation
+
+---
 
 ## 📁 Project Structure
 
 ```text
 restauranty-devops-deployment/
-├── backend/                 # 3 Node.js Microservices
-├── client/                 # React Frontend
-├── k8s/                    # Kubernetes Infrastructure
-│   ├── auth/               # Auth Service Deployment
-│   ├── items/              # Items Service Deployment
-│   ├── discounts/          # Discounts Service Deployment
-│   ├── client/             # Frontend Deployment
-│   ├── mongodb/            # Database Setup
-│   ├── monitoring/         # Prometheus + Grafana
-│   ├── security/           # Network Policies
-│   └── ingress.yaml        # Routing Rules
-├── infrastructure/         # Local Development
-├── .github/workflows/      # CI/CD Pipeline
-├── screenshots/            # Project Screenshots
-└── README.md               # Project Documentation
+├── backend/
+├── client/
+├── k8s/
+├── infrastructure/
+├── .github/workflows/
+├── screenshots/
+└── README.md
 ```
 
-### 🔧 Configuration & Customization
+---
 
-1. ### Environment Setup
-   - Copy k8s/secrets-template.yaml to k8s/secrets.yaml
+## 🐞 Troubleshooting
 
-   - Fill in your environment-specific values
+### App not accessible?
 
-   - Apply: kubectl apply -f k8s/secrets.yaml
+```bash
+kubectl get ingress
+kubectl get pods
+minikube tunnel
+```
 
-2. ### Service Configuration
-   - Modify ports in k8s/ingress.yaml
+---
 
-   - Adjust resource limits in deployment files
+### Services not communicating?
 
-   - Customize monitoring thresholds
+```bash
+kubectl get networkpolicies
+kubectl get endpoints
+```
 
-
-### 📊 Monitoring & Troubleshooting
-Access Monitoring Stack
-   - kubectl port-forward service/grafana-service 8080:3000 &
-   - kubectl port-forward service/prometheus-service 9090:9090 &
-
-**URLs:**
-   - Application: http://localhost
-   - Grafana: http://localhost:8080 (admin/admin)
-   - Prometheus: http://localhost:9090
-
-### Common Issues & Solutions
-1. ### Application not accessible?
-
-**Check if ingress is running**
-- kubectl get ingress
-
-**Verify minikube tunnel**
-- minikube tunnel
-
-**Check pod status**
-- kubectl get pods
-
-
-2. ### Services not communicating?
-
-**Check network policies**
-- kubectl get networkpolicies
-
-**Verify service endpoints**
-- kubectl get endpoints
-
-
+---
 
 ## 🎯 DevOps Skills Demonstrated
 
-| Category | Technologies Used | Implementation Evidence |
-|----------|-------------------|------------------------|
-| **Containerization** | Docker, Multi-stage builds | Optimized Dockerfiles for each microservice |
-| **Orchestration** | Kubernetes, Minikube | Production-ready deployment manifests |
-| **Networking** | Ingress, Services, DNS | Proper service discovery & routing rules |
-| **Monitoring** | Prometheus, Grafana | Real-time metrics collection & dashboards |
-| **Security** | Network Policies, Secrets | Secure service communication & credentials |
-| **CI/CD** | GitHub Actions | Automated testing & deployment pipeline |
-| **Infrastructure as Code** | YAML, Kustomize | Version-controlled infrastructure configuration |
-| **Microservices** | Node.js, React | Distributed system design & communication |
+| Category         | Tools               | Evidence                 |
+| ---------------- | ------------------- | ------------------------ |
+| Containerization | Docker              | Multi-service images     |
+| Orchestration    | Kubernetes          | Production manifests     |
+| Monitoring       | Prometheus, Grafana | Dashboards               |
+| Security         | Network Policies    | Secure communication     |
+| CI/CD            | GitHub Actions      | Automated pipeline       |
+| IaC              | YAML                | Version-controlled infra |
 
+---
 
+## 📈 Business Value
 
+* Faster deployments
+* Improved reliability
+* Built-in security
+* Scalable architecture
 
+---
 
-### 📈 Business Value
-This project demonstrates how proper DevOps practices deliver:
+## 👨‍💻 About Me
 
-   - Faster deployments - from days to minutes
-
-   - Improved reliability - monitoring and auto-healing
-
-   - Better security - built-in security controls
-
-   - Cost optimization - efficient resource usage
-
-   - Scalability - handle growth without re-architecture
-
-
-
-### 📄 License
-MIT License - feel free to learn from this project!
-
-
-### 👨‍💻 About Me
 **Donatus Emeka Anyalebechi**
+Junior DevOps Engineer
 
-**Staatlich geprüfter Informatiker (Softwaretechnologie)**
+📍 Germany
+📧 [donaemeka92@gmail.com](mailto:donaemeka92@gmail.com)
+🔗 https://www.linkedin.com/in/donatus-devops
+🐙 https://github.com/donaemeka
 
-J**unior DevOps Engineer**
+---
 
-📍 Based in: Germany
-
-📧 Email: donaemeka92@gmail.com
-
-💼 LinkedIn: linkedin.com/in/donatus-devops
-
-🐙 GitHub: github.com/donaemeka
-
-- **Seeking: Junior DevOps Engineer positions in Germany (On-site or Remote)**
-
-This project demonstrates my practical DevOps skills and readiness for production environments.
-
-Built with ❤️ to demonstrate real-world DevOps skills
+⭐ Built to demonstrate real-world DevOps capabilities
