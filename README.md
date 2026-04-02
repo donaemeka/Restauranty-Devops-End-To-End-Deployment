@@ -1,32 +1,34 @@
 # 🚀 Restauranty - End-to-End DevOps Deployment
 
-A full-stack **restaurant management platform** built using a **microservices architecture**, where users can browse items, manage authentication, and apply discounts, all running on a fully containerized and orchestrated environment.
+A full-stack **restaurant management platform** built with a **microservices architecture**, where users can browse items, authenticate, and apply discounts in a distributed system running on Kubernetes.
 
-The system demonstrates how modern applications are deployed, secured, monitored, and automated using real-world DevOps practices.
+The system demonstrates how modern applications are **deployed, monitored, secured, and automated** using real-world DevOps practices.
 
 ---
 
 ## 📌 Project Overview
 
-**Restauranty** is designed to simulate a real-world production system where multiple backend services work together reliably.
+**Restauranty** simulates a real-world production system where multiple backend services communicate reliably and scale independently.
+
+This system replicates how modern cloud-native applications are built and operated in production environments.
 
 It demonstrates:
 
 * Microservices architecture using **Node.js and React**
 * Containerization with **Docker**
-* Deployment with **Kubernetes**
-* Monitoring using **Prometheus & Grafana**
-* Secure communication via **Network Policies & Secrets**
+* Deployment using **Kubernetes**
+* Monitoring with **Prometheus & Grafana**
+* Secure communication using **Network Policies & Secrets**
 * Automated delivery using **GitHub Actions CI/CD**
 
 ---
 
 ## 🎯 Problem It Solves
 
-Modern applications (like restaurant systems) require:
+Modern applications (such as restaurant platforms) require:
 
-* Multiple independent services (auth, items, discounts)
-* Reliable communication between services
+* Independent services (authentication, items, discounts)
+* Reliable service-to-service communication
 * Scalable infrastructure
 * Monitoring and observability
 
@@ -36,10 +38,12 @@ This project shows how to design and operate such systems using DevOps best prac
 
 ## 🏗️ Architecture Overview
 
+![Architecture](screenshots/architecture.png)
+
 ### 🔄 System Flow
 
 ```text
-User → Frontend (React) → NGINX Ingress → Kubernetes Cluster → Backend Services → MongoDB
+User → NGINX Ingress → Frontend (React) → Backend Services → MongoDB
 ```
 
 ### 🧱 Core Components
@@ -72,16 +76,24 @@ User → Frontend (React) → NGINX Ingress → Kubernetes Cluster → Backend S
 ## 📊 Key Achievements
 
 * ✅ Deployed a **multi-service application on Kubernetes**
-* ✅ Implemented **CI/CD pipeline for automated delivery**
+* ✅ Implemented a **CI/CD pipeline for automated delivery**
 * ✅ Integrated **monitoring stack (Prometheus + Grafana)**
 * ✅ Applied **network policies for secure service communication**
 * ✅ Built a fully containerized production-like environment
 
 ---
 
+## 📊 Results
+
+* Improved deployment consistency using containerized environments
+* Enabled real-time monitoring and observability
+* Reduced manual setup through Infrastructure as Code
+
+---
+
 ## 📸 Screenshots
 
-| Application                 | Kubernetes                            | Monitoring                                       | CI/CD                                   |
+| Application                 | Kubernetes Dashboard                  | Monitoring (Grafana)                             | CI/CD Pipeline                          |
 | --------------------------- | ------------------------------------- | ------------------------------------------------ | --------------------------------------- |
 | ![App](screenshots/App.png) | ![K8s](screenshots/k8s-dashboard.png) | ![Monitoring](screenshots/grafana-dashboard.png) | ![CI/CD](screenshots/cicd-pipeline.png) |
 
@@ -142,44 +154,44 @@ kubectl get ingress
 ### 1️⃣ Containerization
 
 * Multi-stage Docker builds
-* Optimized images for production
+* Optimized production-ready images
 
 ---
 
 ### 2️⃣ Kubernetes Orchestration
 
-* Deployments with resource limits
-* Liveness & readiness probes
-* ConfigMaps & Secrets
+* Resource limits and requests
+* Liveness and readiness probes
+* ConfigMaps and Secrets
 
 ---
 
 ### 3️⃣ Networking
 
-* NGINX Ingress
+* NGINX Ingress controller
 * Service-based communication
 
 ---
 
 ### 4️⃣ Monitoring
 
-* Prometheus for metrics
-* Grafana dashboards
+* Prometheus for metrics collection
+* Grafana dashboards for visualization
 
 ---
 
 ### 5️⃣ Security
 
-* Network Policies
-* Secrets management
-* Non-root containers
+* Network Policies for service isolation
+* Secrets management (no hardcoded credentials)
+* Non-root container execution
 
 ---
 
 ### 6️⃣ CI/CD
 
 * GitHub Actions pipeline
-* Automated builds & validation
+* Automated builds and validation
 
 ---
 
@@ -200,7 +212,7 @@ restauranty-devops-deployment/
 
 ## 🐞 Troubleshooting
 
-### App not accessible?
+### Application not accessible?
 
 ```bash
 kubectl get ingress
@@ -221,14 +233,14 @@ kubectl get endpoints
 
 ## 🎯 DevOps Skills Demonstrated
 
-| Category         | Tools               | Evidence                 |
-| ---------------- | ------------------- | ------------------------ |
-| Containerization | Docker              | Multi-service images     |
-| Orchestration    | Kubernetes          | Production manifests     |
-| Monitoring       | Prometheus, Grafana | Dashboards               |
-| Security         | Network Policies    | Secure communication     |
-| CI/CD            | GitHub Actions      | Automated pipeline       |
-| IaC              | YAML                | Version-controlled infra |
+| Category               | Tools               | Evidence                         |
+| ---------------------- | ------------------- | -------------------------------- |
+| Containerization       | Docker              | Multi-service images             |
+| Orchestration          | Kubernetes          | Production manifests             |
+| Monitoring             | Prometheus, Grafana | Dashboards                       |
+| Security               | Network Policies    | Secure communication             |
+| CI/CD                  | GitHub Actions      | Automated pipeline               |
+| Infrastructure as Code | YAML                | Version-controlled configuration |
 
 ---
 
