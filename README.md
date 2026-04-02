@@ -1,6 +1,6 @@
 # 🚀 Restauranty - End-to-End DevOps Deployment
 
-A full-stack **restaurant management platform** built using a **microservices architecture**, where users can browse items, manage authentication, and apply discounts — all running on a fully containerized and orchestrated environment.
+A full-stack **restaurant management platform** built using a **microservices architecture**, where users can browse items, manage authentication, and apply discounts, all running on a fully containerized and orchestrated environment.
 
 The system demonstrates how modern applications are deployed, secured, monitored, and automated using real-world DevOps practices.
 
